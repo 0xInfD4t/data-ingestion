@@ -16,6 +16,9 @@ cargo test -p data-quality-core
 # Build aytch CLI
 & "$PSScriptRoot\build_aytch.ps1"
 
+# Build aytch Python wheel
+& "$PSScriptRoot\build_aytch_wheel.ps1"
+
 # Build data-quality WASM
 & "$PSScriptRoot\build_dataquality_wasm.ps1"
 

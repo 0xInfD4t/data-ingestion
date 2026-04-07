@@ -29,3 +29,7 @@ if (Test-Path $binaryPath) {
     Write-Host "Binary not found at expected path: $binaryPath" -ForegroundColor Red
     exit 1
 }
+
+Write-Host ""
+Write-Host "To also build a pip-installable wheel:" -ForegroundColor Yellow
+Write-Host "  .\scripts\build_aytch_wheel.ps1"

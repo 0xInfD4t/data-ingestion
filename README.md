@@ -14,35 +14,146 @@ Exposed as five build targets across a 7-crate workspace:
 
 > For full system design, see [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) and [`docs/DATA_QUALITY_ARCHITECTURE.md`](docs/DATA_QUALITY_ARCHITECTURE.md).
 
+### Build Targets
+
+| Target | Command | Output |
+|--------|---------|--------|
+| `aytch` CLI binary | `.\scripts\build_aytch.ps1` | `target/release/aytch.exe` |
+| `aytch` pip wheel | `.\scripts\build_aytch_wheel.ps1` | `dist/aytch/aytch-*.whl` |
+| `data_ingestion` Python wheel | `.\scripts\build_python.ps1` | `dist/python/data_ingestion-*.whl` |
+| `data_quality` Python wheel | `.\scripts\build_dataquality_python.ps1` | `dist/python/data_quality-*.whl` |
+| WASM packages | `.\scripts\build_wasm.ps1` | `dist/wasm-*/` |
+| All targets | `.\scripts\build_all.ps1` | All of the above |
+
 ---
 
 ## Quick Start
 
+### Option 1: Install via pip (Recommended)
+
+```bash
+# Install aytch directly from pip
+pip install aytch
+
+# Or install in a virtual environment (recommended)
+python -m venv .venv
+.venv\Scripts\activate        # Windows
+source .venv/bin/activate     # Linux/macOS
+pip install aytch
+
+# Verify installation
+aytch --version
+aytch --help
+```
+
+### Option 2: Build from source (native binary)
+
+```powershell
+# Requires Rust toolchain
+cargo build -p aytch --release
+# Binary: target/release/aytch.exe
+```
+
+### Option 3: Build pip wheel from source
+
+```powershell
+# Requires Rust + maturin
+.\scripts\build_aytch_wheel.ps1
+pip install dist\aytch\aytch-0.1.0-*.whl
+```
+
 ### Step 1 — Generate data contracts from source files
 
 ```powershell
-.\aytch.exe --ingest --src schema.json --output .\contracts --type datacontract
+aytch --ingest --src schema.json --output .\contracts --type datacontract
 ```
 
 ### Step 2 — Generate GX data quality test suites from contracts
 
 ```powershell
-.\aytch.exe --dataquality --src .\contracts --output .\expectations --type greatexpectations
+aytch --dataquality --src .\contracts --output .\expectations --type greatexpectations
 ```
 
 ### Or do both in one command
 
 ```powershell
-.\aytch.exe --ingest --dataquality --src schema.json --output .\output
+aytch --ingest --dataquality --src schema.json --output .\output
 ```
 
 ### Process an entire folder recursively
 
 ```powershell
-.\aytch.exe --ingest --dataquality --src .\schemas\ --output .\output --recursive
+aytch --ingest --dataquality --src .\schemas\ --output .\output --recursive
 ```
 
 > **Best practice:** When using `--dataquality` on a folder with `--recursive`, keep source schema files and generated contracts in separate directories. Mixing them causes the engine to attempt re-ingesting its own output.
+
+---
+
+## Installation
+
+### Via pip (all platforms)
+
+```bash
+pip install aytch
+```
+
+This installs the `aytch` command into your Python environment's `Scripts/` (Windows) or `bin/` (Linux/macOS) directory. Works with:
+- System Python
+- Virtual environments (`.venv`, `virtualenv`, `conda`)
+- `pipx` for isolated global installs
+
+```bash
+# Recommended: use pipx for global CLI tools
+pipx install aytch
+aytch --help
+```
+
+### Via virtual environment
+
+```bash
+# Create and activate a venv
+python -m venv .venv
+
+# Windows
+.venv\Scripts\activate
+pip install aytch
+aytch --version
+
+# Linux/macOS
+source .venv/bin/activate
+pip install aytch
+aytch --version
+```
+
+### Build from source
+
+Requires [Rust](https://rustup.rs/) and [maturin](https://github.com/PyO3/maturin):
+
+```bash
+# Install build tools
+pip install maturin
+
+# Build and install in development mode (no wheel file needed)
+maturin develop --manifest-path crates/aytch/Cargo.toml
+
+# Or build a wheel
+.\scripts\build_aytch_wheel.ps1          # Windows
+bash scripts/build_aytch_wheel.sh        # Linux/macOS (if script exists)
+pip install dist/aytch/aytch-*.whl
+```
+
+### PATH note
+
+If `aytch` is not found after a user-level `pip install` (without a venv), add Python's Scripts directory to your PATH:
+
+```powershell
+# Windows — add to PATH permanently
+$pythonScripts = python -c "import sysconfig; print(sysconfig.get_path('scripts'))"
+[Environment]::SetEnvironmentVariable("PATH", "$env:PATH;$pythonScripts", "User")
+```
+
+Inside an activated `.venv`, the venv's `Scripts/` is always on PATH automatically.
 
 ---
 
@@ -293,11 +404,16 @@ bash scripts/build_all.sh
 
 ### Build Individual Targets
 
-#### CLI (`aytch`)
+#### `aytch` CLI
 
 ```powershell
+# Native binary only
 .\scripts\build_aytch.ps1
-# Binary: target/release/aytch.exe
+# Output: target/release/aytch.exe
+
+# pip-installable wheel
+.\scripts\build_aytch_wheel.ps1
+# Output: dist/aytch/aytch-0.1.0-py3-none-win_amd64.whl
 ```
 
 ```bash
