@@ -1,0 +1,10 @@
+# The aytch CLI is a compiled Rust binary distributed as a Python wheel.
+# Install it via pip (when published to PyPI):
+#   pip install aytch
+#
+# Or build from source:
+#   pip install maturin
+#   maturin build --manifest-path crates/aytch/Cargo.toml --release
+
+# Build dependency (only needed if building from source)
+maturin>=1.4,<2.0

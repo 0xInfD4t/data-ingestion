@@ -1,0 +1,5 @@
+# Build tools required to compile Rust-based Python wheels
+maturin>=1.4,<2.0
+
+# Optional: for running Python demos and examples
+# (the data_ingestion and data_quality modules are built via maturin, not pip)

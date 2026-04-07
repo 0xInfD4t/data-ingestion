@@ -90,6 +90,7 @@ dependencies = [
  "clap",
  "data-ingestion-core",
  "data-quality-core",
+ "serde_json",
 ]
 
 [[package]]

@@ -1,0 +1,13 @@
+# The data_quality module is a compiled Rust extension.
+# Install it via pip (when published to PyPI):
+#   pip install data-quality
+#
+# Or build from source:
+#   pip install maturin
+#   maturin develop --manifest-path crates/data-quality-python/Cargo.toml
+
+# Build dependency (only needed if building from source)
+maturin>=1.4,<2.0
+
+# Optional: Great Expectations for running the generated test suites
+great-expectations>=1.0,<2.0

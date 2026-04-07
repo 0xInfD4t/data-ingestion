@@ -1,0 +1,10 @@
+# The data_ingestion module is a compiled Rust extension.
+# Install it via pip (when published to PyPI):
+#   pip install data-ingestion
+#
+# Or build from source:
+#   pip install maturin
+#   maturin develop --manifest-path crates/data-ingestion-python/Cargo.toml
+
+# Build dependency (only needed if building from source)
+maturin>=1.4,<2.0
