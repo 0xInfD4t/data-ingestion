@@ -1,0 +1,25 @@
+{
+  "extreme_nesting": [[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[["bottom"]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]],
+  "numeric_chaos": {
+    "huge_int": 9223372036854775807,
+    "precision_loss": 0.12345678901234567890123456789,
+    "scientific": -1.23456789e-500,
+    "zero_prefixed": 0e+1
+  },
+  "character_minefield": {
+    "unicode_junk": "π_💩_山_𝄞",
+    "escapes": "\"\\/\b\f\n\r\t",
+    "null_middle": "hidden\u0000null",
+    "unpaired_surrogate": "\uD83D\uDE00"
+  },
+  "structure_edge_cases": {
+    "duplicate_keys": "intentional",
+    "duplicate_keys": "overwrite_test",
+    "empty_keys": { "": "blank" },
+    "trailing_commas": "not allowed by spec",
+    "comments": "// some parsers crash on this"
+  },
+  "large_arrays": [
+    null, true, false, {}, [], -0, 1.0e10
+  ]
+}

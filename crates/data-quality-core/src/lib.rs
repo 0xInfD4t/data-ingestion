@@ -199,11 +199,9 @@ mod tests {
     fn test_generate_baseline_suites_returns_17_suites() {
         let config = DqConfig::default();
         let suites = generate_baseline_suites(&config);
-        assert_eq!(suites.len(), 16, "Must have 16 baseline suite generators (17th is security)");
-        // Actually we have 16 generators in the list (security_compliance is the 16th)
-        // Let's check the actual count
-        let suites = generate_baseline_suites(&config);
-        assert!(suites.len() >= 16, "Must have at least 16 baseline suites");
+        // 16 healthcare suites + 1 criminal_background suite = 17 total
+        assert_eq!(suites.len(), 17, "Must have 17 baseline suite generators");
+        assert!(suites.len() >= 17, "Must have at least 17 baseline suites");
     }
 
     #[test]
@@ -211,7 +209,8 @@ mod tests {
         let config = DqConfig::default();
         let suites = generate_baseline_suites(&config);
         let total: usize = suites.iter().map(|s| s.expectations.len()).sum();
-        assert_eq!(total, 1328, "Total baseline tests must equal 1328");
+        // 1328 original healthcare tests + 150 criminal background tests = 1478
+        assert_eq!(total, 1478, "Total baseline tests must equal 1478 (1328 + 150 CBC)");
     }
 
     #[test]
@@ -224,7 +223,7 @@ mod tests {
         assert_eq!(suite_set.contract_id, Some("test-contract-id".to_string()));
         assert!(!suite_set.baseline_suites.is_empty());
         assert!(!suite_set.contract_suites.is_empty());
-        assert!(suite_set.total_test_count >= 1328);
+        assert!(suite_set.total_test_count >= 1478);
     }
 
     #[test]

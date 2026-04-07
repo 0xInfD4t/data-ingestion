@@ -1,11 +1,11 @@
 use data_quality_core::{
     generate_baseline_suites,
     suites::{
-        BaselineSuiteSet, CrossSystemConsistencySuite, DataAccuracySuite, DataBusinessRulesSuite,
-        DataCompletenessSuite, DataConsistencySuite, DataDependencyChecksSuite,
-        DataFormatConsistencySuite, DataIntegritySuite, DataProfileSuite, DataSensitivitySuite,
-        DataTimelinessSuite, DataUniquenessSuite, DataValiditySuite, DataVolumeAnomaliesSuite,
-        PerformanceMetricsSuite, SecurityComplianceSuite, SuiteGenerator,
+        BaselineSuiteSet, CriminalBackgroundSuite, CrossSystemConsistencySuite, DataAccuracySuite,
+        DataBusinessRulesSuite, DataCompletenessSuite, DataConsistencySuite,
+        DataDependencyChecksSuite, DataFormatConsistencySuite, DataIntegritySuite, DataProfileSuite,
+        DataSensitivitySuite, DataTimelinessSuite, DataUniquenessSuite, DataValiditySuite,
+        DataVolumeAnomaliesSuite, PerformanceMetricsSuite, SecurityComplianceSuite, SuiteGenerator,
     },
     DqConfig,
 };
@@ -107,16 +107,30 @@ fn test_security_compliance_suite_count() {
 }
 
 #[test]
-fn test_total_baseline_count() {
-    let suites = BaselineSuiteSet::generate_all(&DqConfig::default());
-    let total: usize = suites.iter().map(|s| s.expectations.len()).sum();
-    assert_eq!(total, 1328, "Total baseline tests must equal 1328");
+fn test_criminal_background_suite_count() {
+    let suite = CriminalBackgroundSuite.build_suite(&DqConfig::default());
+    assert_eq!(
+        suite.expectations.len(),
+        150,
+        "CBC001-CBC150 must produce 150 tests"
+    );
+    assert!(
+        suite.expectations.len() >= 120,
+        "criminal_background_suite must have at least 120 tests"
+    );
 }
 
 #[test]
-fn test_baseline_suite_count_is_16() {
+fn test_total_baseline_count() {
     let suites = BaselineSuiteSet::generate_all(&DqConfig::default());
-    assert_eq!(suites.len(), 16, "Must have exactly 16 baseline suites");
+    let total: usize = suites.iter().map(|s| s.expectations.len()).sum();
+    assert_eq!(total, 1478, "Total baseline tests must equal 1478 (1328 + 150)");
+}
+
+#[test]
+fn test_baseline_suite_count_is_17() {
+    let suites = BaselineSuiteSet::generate_all(&DqConfig::default());
+    assert_eq!(suites.len(), 17, "Must have exactly 17 baseline suites");
 }
 
 #[test]
@@ -137,7 +151,7 @@ fn test_suite_filtering_by_disabled_suites() {
         ..Default::default()
     };
     let suites = BaselineSuiteSet::generate_all(&config);
-    assert_eq!(suites.len(), 15);
+    assert_eq!(suites.len(), 16);
     assert!(!suites.iter().any(|s| s.name == "security_compliance_suite"));
 }
 
@@ -145,9 +159,9 @@ fn test_suite_filtering_by_disabled_suites() {
 fn test_generate_baseline_suites_api() {
     let config = DqConfig::default();
     let suites = generate_baseline_suites(&config);
-    assert_eq!(suites.len(), 16);
+    assert_eq!(suites.len(), 17);
     let total: usize = suites.iter().map(|s| s.expectations.len()).sum();
-    assert_eq!(total, 1328);
+    assert_eq!(total, 1478);
 }
 
 #[test]

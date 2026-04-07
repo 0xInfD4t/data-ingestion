@@ -1,6 +1,7 @@
 use crate::config::DqConfig;
 use crate::expectations::{ExpectationConfig, ExpectationSuite, SuiteMeta};
 
+pub mod criminal_background;
 pub mod cross_system_consistency;
 pub mod data_accuracy;
 pub mod data_business_rules;
@@ -18,6 +19,7 @@ pub mod data_volume_anomalies;
 pub mod performance_metrics;
 pub mod security_compliance;
 
+pub use criminal_background::CriminalBackgroundSuite;
 pub use cross_system_consistency::CrossSystemConsistencySuite;
 pub use data_accuracy::DataAccuracySuite;
 pub use data_business_rules::DataBusinessRulesSuite;
@@ -93,6 +95,7 @@ impl BaselineSuiteSet {
             Box::new(CrossSystemConsistencySuite),
             Box::new(PerformanceMetricsSuite),
             Box::new(SecurityComplianceSuite),
+            Box::new(CriminalBackgroundSuite),
         ];
 
         generators

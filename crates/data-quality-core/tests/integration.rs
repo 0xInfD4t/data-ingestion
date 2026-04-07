@@ -116,16 +116,16 @@ fn test_full_pipeline_baseline_plus_contract() {
     let config = DqConfig::default();
     let suite_set = generate_all_suites(&contract, &config);
 
-    // Verify baseline suites
-    assert_eq!(suite_set.baseline_suites.len(), 16, "Must have 16 baseline suites");
+    // Verify baseline suites (16 healthcare + 1 criminal_background = 17)
+    assert_eq!(suite_set.baseline_suites.len(), 17, "Must have 17 baseline suites");
     let baseline_total: usize = suite_set.baseline_suites.iter().map(|s| s.expectations.len()).sum();
-    assert_eq!(baseline_total, 1328, "Baseline must have 1328 tests");
+    assert_eq!(baseline_total, 1478, "Baseline must have 1478 tests (1328 + 150 CBC)");
 
     // Verify contract suites exist
     assert!(!suite_set.contract_suites.is_empty(), "Must have contract-specific suites");
 
     // Verify total count
-    assert!(suite_set.total_test_count >= 1328, "Total must be >= 1328");
+    assert!(suite_set.total_test_count >= 1478, "Total must be >= 1478");
     assert_eq!(
         suite_set.total_test_count,
         baseline_total + suite_set.contract_suites.iter().map(|s| s.expectations.len()).sum::<usize>()
@@ -234,7 +234,7 @@ fn test_baseline_only_config() {
         ..Default::default()
     };
     let suite_set = generate_all_suites(&contract, &config);
-    assert_eq!(suite_set.baseline_suites.len(), 16);
+    assert_eq!(suite_set.baseline_suites.len(), 17);
     assert!(suite_set.contract_suites.is_empty());
 }
 
@@ -254,9 +254,9 @@ fn test_contract_only_config() {
 fn test_generate_baseline_suites_standalone() {
     let config = DqConfig::default();
     let suites = generate_baseline_suites(&config);
-    assert_eq!(suites.len(), 16);
+    assert_eq!(suites.len(), 17);
     let total: usize = suites.iter().map(|s| s.expectations.len()).sum();
-    assert_eq!(total, 1328);
+    assert_eq!(total, 1478);
 }
 
 #[test]
