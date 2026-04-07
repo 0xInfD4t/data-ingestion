@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<products>
+  <product id="P001" category="electronics">
+    <name>Wireless Headphones</name>
+    <price currency="USD">79.99</price>
+    <stock>150</stock>
+    <available>true</available>
+    <description>High-quality wireless headphones with noise cancellation</description>
+  </product>
+  <product id="P002" category="books">
+    <name>Rust Programming Language</name>
+    <price currency="USD">39.99</price>
+    <stock>75</stock>
+    <available>true</available>
+    <description>The official Rust programming language book</description>
+  </product>
+</products>

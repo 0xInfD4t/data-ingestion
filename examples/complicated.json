@@ -1,0 +1,52 @@
+{
+  "triple_nested": {
+    "level2": {
+      "level3": [
+        "deep",
+        {
+          "final_depth": [
+            "🤯",
+            "\\\"escaped quotes\\\"",
+            "\\\\escaped_backslash\\\\",
+            "\u0000",
+            "\uD83D\uDE00"
+          ]
+        }
+      ]
+    }
+  },
+  "empty_objects": {
+    "array": [],
+    "obj": {},
+    "nested": [[[[{}]]]]
+  },
+  "numeric_chaos": {
+    "scientific": 1.23e-10,
+    "max_int": 9007199254740991,
+    "min_int": -9007199254740991,
+    "float_zero": 0.00000000000000001,
+    "leading_zero": 123
+  },
+  "weird_keys": {
+    " \n\t\r ": "whitespace only key",
+    "": "empty string key",
+    "😊": "emoji key",
+    "123": "number key"
+  },
+  "mix_types_array": [
+    null,
+    true,
+    false,
+    "string",
+    [
+      "nested",
+      "array"
+    ],
+    {
+      "key": "value"
+    }
+  ],
+  "long_string": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  "null_val": null,
+  "boolean_val": true
+}

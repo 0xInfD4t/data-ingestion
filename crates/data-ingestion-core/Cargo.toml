@@ -1,0 +1,27 @@
+[package]
+name    = "data-ingestion-core"
+version.workspace = true
+edition.workspace = true
+
+[features]
+default = []
+full    = ["json", "xml", "dict"]
+json    = []   # enables reader_json + reader_json_schema
+xml     = []   # enables reader_xml + reader_xsd
+dict    = []   # enables reader_csv + reader_yaml
+
+[dependencies]
+serde       = { workspace = true }
+serde_json  = { workspace = true }
+serde_yaml  = { workspace = true }
+quick-xml   = { workspace = true }
+csv         = { workspace = true }
+uuid        = { workspace = true }
+chrono      = { workspace = true }
+thiserror   = { workspace = true }
+regex       = { workspace = true }
+once_cell   = { workspace = true }
+log         = { workspace = true }
+
+[dev-dependencies]
+pretty_assertions = { workspace = true }

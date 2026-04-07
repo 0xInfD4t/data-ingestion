@@ -1,0 +1,11 @@
+field_name,data_type,description,nullable,primary_key,example
+transaction_id,string,Unique transaction identifier,false,true,TXN-20240115-001
+account_id,integer,Account identifier,false,false,12345
+transaction_type,string,Type of transaction,false,false,debit
+amount,decimal,Transaction amount in USD,false,false,150.00
+currency,string,ISO 4217 currency code,false,false,USD
+transaction_date,datetime,Date and time of transaction,false,false,2024-01-15T10:30:00Z
+description,string,Transaction description,true,false,Coffee shop purchase
+merchant_id,string,Merchant identifier,true,false,MERCH-001
+status,string,Transaction status,false,false,completed
+created_at,datetime,Record creation timestamp,false,false,2024-01-15T10:30:01Z

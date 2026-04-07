@@ -1,0 +1,23 @@
+[package]
+name    = "data-ingestion-wasm"
+version.workspace = true
+edition.workspace = true
+
+[lib]
+crate-type = ["cdylib"]
+
+[features]
+default = ["console_error_panic_hook"]
+
+[dependencies]
+data-ingestion-core      = { path = "../data-ingestion-core" }
+wasm-bindgen             = { workspace = true }
+js-sys                   = { workspace = true }
+serde                    = { workspace = true }
+serde_json               = { workspace = true }
+wasm-bindgen-futures     = "0.4"
+console_error_panic_hook = { workspace = true, optional = true }
+getrandom                = { workspace = true }
+
+[package.metadata.wasm-pack.profile.release]
+wasm-opt = ["-Oz"]

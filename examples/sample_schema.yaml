@@ -1,0 +1,41 @@
+- name: event_id
+  type: string
+  description: Unique event identifier
+  nullable: false
+  primary_key: true
+  example: "EVT-2024-001"
+
+- name: event_type
+  type: string
+  description: Type of event
+  nullable: false
+  example: "page_view"
+
+- name: user_id
+  type: integer
+  description: User identifier
+  nullable: true
+  example: 42
+
+- name: session_id
+  type: string
+  description: Session identifier
+  nullable: false
+  example: "sess-abc123"
+
+- name: timestamp
+  type: datetime
+  description: Event timestamp in UTC
+  nullable: false
+  example: "2024-01-15T10:30:00Z"
+
+- name: properties
+  type: object
+  description: Event-specific properties
+  nullable: true
+
+- name: ip_address
+  type: string
+  description: Client IP address
+  nullable: true
+  example: "192.168.1.1"

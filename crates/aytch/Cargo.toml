@@ -1,0 +1,15 @@
+[package]
+name = "aytch"
+version = "0.1.0"
+edition = "2021"
+description = "CLI for data contract generation from JSON, XML, XSD, CSV, YAML sources"
+default-run = "aytch"
+
+[[bin]]
+name = "aytch"
+path = "src/main.rs"
+
+[dependencies]
+data-ingestion-core = { path = "../data-ingestion-core" }
+clap = { version = "4", features = ["derive"] }
+anyhow = "1"

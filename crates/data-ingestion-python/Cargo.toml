@@ -1,0 +1,13 @@
+[package]
+name    = "data-ingestion-python"
+version.workspace = true
+edition.workspace = true
+
+[lib]
+name       = "data_ingestion"
+crate-type = ["cdylib"]
+
+[dependencies]
+data-ingestion-core = { path = "../data-ingestion-core" }
+pyo3                = { workspace = true }
+serde_json          = { workspace = true }
