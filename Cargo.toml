@@ -3,6 +3,9 @@ members = [
     "crates/data-ingestion-core",
     "crates/data-ingestion-wasm",
     "crates/data-ingestion-python",
+    "crates/data-quality-core",
+    "crates/data-quality-wasm",
+    "crates/data-quality-python",
     "crates/aytch",
 ]
 resolver = "2"
@@ -57,6 +60,9 @@ getrandom                = { version = "0.2", features = ["js"] }
 
 # Python
 pyo3 = { version = "0.22", features = ["extension-module"] }
+
+# Ordered map (stable JSON key ordering for GX kwargs)
+indexmap    = { version = "2", features = ["serde"] }
 
 # Dev / testing
 pretty_assertions = { version = "1" }

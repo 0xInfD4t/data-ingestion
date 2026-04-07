@@ -1,0 +1,18 @@
+[package]
+name    = "data-quality-wasm"
+version.workspace = true
+edition.workspace = true
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+data-quality-core   = { path = "../data-quality-core" }
+data-ingestion-core = { path = "../data-ingestion-core" }
+wasm-bindgen             = { workspace = true }
+js-sys                   = { workspace = true }
+serde_json               = { workspace = true }
+console_error_panic_hook = { workspace = true, optional = true }
+
+[features]
+default = ["console_error_panic_hook"]

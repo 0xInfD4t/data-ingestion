@@ -89,6 +89,7 @@ dependencies = [
  "anyhow",
  "clap",
  "data-ingestion-core",
+ "data-quality-core",
 ]
 
 [[package]]
@@ -255,6 +256,45 @@ dependencies = [
  "serde_json",
  "wasm-bindgen",
  "wasm-bindgen-futures",
+]
+
+[[package]]
+name = "data-quality-core"
+version = "0.1.0"
+dependencies = [
+ "csv",
+ "data-ingestion-core",
+ "indexmap",
+ "log",
+ "pretty_assertions",
+ "serde",
+ "serde_json",
+ "serde_yaml",
+ "thiserror",
+ "uuid",
+]
+
+[[package]]
+name = "data-quality-python"
+version = "0.1.0"
+dependencies = [
+ "data-ingestion-core",
+ "data-quality-core",
+ "pyo3",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
+name = "data-quality-wasm"
+version = "0.1.0"
+dependencies = [
+ "console_error_panic_hook",
+ "data-ingestion-core",
+ "data-quality-core",
+ "js-sys",
+ "serde_json",
+ "wasm-bindgen",
 ]
 
 [[package]]

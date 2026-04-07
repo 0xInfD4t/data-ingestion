@@ -1,0 +1,13 @@
+[build-system]
+requires = ["maturin>=1.4,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "data-quality"
+version = "0.1.0"
+description = "Great Expectations data quality suite generator from data contracts"
+requires-python = ">=3.9"
+
+[tool.maturin]
+features = ["pyo3/extension-module"]
+module-name = "data_quality"

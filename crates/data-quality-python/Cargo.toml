@@ -1,0 +1,15 @@
+[package]
+name    = "data-quality-python"
+version.workspace = true
+edition.workspace = true
+
+[lib]
+name       = "data_quality"
+crate-type = ["cdylib"]
+
+[dependencies]
+data-quality-core   = { path = "../data-quality-core" }
+data-ingestion-core = { path = "../data-ingestion-core" }
+pyo3       = { workspace = true }
+serde      = { workspace = true }
+serde_json = { workspace = true }

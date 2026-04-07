@@ -11,5 +11,6 @@ path = "src/main.rs"
 
 [dependencies]
 data-ingestion-core = { path = "../data-ingestion-core" }
+data-quality-core   = { path = "../data-quality-core" }
 clap = { version = "4", features = ["derive"] }
 anyhow = "1"
