@@ -1,0 +1,15 @@
+# Ceph
+ceph_version: "18"          # Reef (stable, recommended for Hudi)
+ceph_cluster_name: "ceph"
+ceph_public_network: "10.0.0.0/24"   # ← adjust to your network
+ceph_cluster_network: "10.0.0.0/24"
+
+# MinIO
+minio_version: "RELEASE.2025-03-20T20-16-30Z"   # latest stable as of now
+minio_root_user: "admin"
+minio_root_password: "SuperSecretMinio2026!"     # ← CHANGE THIS
+minio_port: 9000
+minio_console_port: 9001
+
+# Bronze zone
+bronze_bucket: "bronze"

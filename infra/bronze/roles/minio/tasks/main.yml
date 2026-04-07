@@ -1,0 +1,34 @@
+---
+- name: Create MinIO user and directories
+  user:
+    name: minio-user
+    system: yes
+    home: /var/lib/minio
+    create_home: yes
+
+- name: Create MinIO data directory on CephFS
+  file:
+    path: "{{ minio_data_dir }}"
+    state: directory
+    owner: minio-user
+    group: minio-user
+    mode: '0755'
+
+- name: Download MinIO binary
+  get_url:
+    url: "https://dl.min.io/server/minio/release/linux-amd64/archive/minio.{{ minio_version }}"
+    dest: /usr/local/bin/minio
+    mode: '0755'
+
+- name: Create MinIO systemd service
+  template:
+    src: minio.service.j2
+    dest: /etc/systemd/system/minio.service
+  notify: restart minio
+
+- name: Start and enable MinIO
+  systemd:
+    name: minio
+    enabled: yes
+    state: started
+    daemon_reload: yes

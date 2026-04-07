@@ -1,0 +1,6 @@
+---
+# Ceph role defaults
+ceph_version: "18"
+ceph_cluster_name: "ceph"
+ceph_public_network: "10.0.0.0/24"
+ceph_cluster_network: "10.0.0.0/24"

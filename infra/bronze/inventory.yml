@@ -1,0 +1,6 @@
+all:
+  hosts:
+    storage01:          # ← change to your server hostname/IP
+      ansible_host: 10.0.0.51   # ← your server IP
+      ansible_user: root
+      ansible_ssh_private_key_file: ~/.ssh/id_rsa

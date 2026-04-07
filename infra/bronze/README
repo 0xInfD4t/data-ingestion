@@ -1,0 +1,26 @@
+All bronze zone Ansible playbook files have been created under `infra/bronze/`
+
+**Inventory & Variables**
+- [`infra/bronze/inventory.yml`](infra/bronze/inventory.yml) — Host inventory targeting `storage01` at `10.0.0.51`
+- [`infra/bronze/group_vars/all.yml`](infra/bronze/group_vars/all.yml) — Shared vars for Ceph (v18/Reef), MinIO, and the `bronze` bucket
+
+**Main Playbook**
+- [`infra/bronze/site.yml`](infra/bronze/site.yml) — Top-level playbook applying `ceph`, `minio`, and `bronze-bucket` roles with `minio_data_dir: /var/lib/minio/data`
+
+**Ceph Role**
+- [`infra/bronze/roles/ceph/defaults/main.yml`](infra/bronze/roles/ceph/defaults/main.yml) — Default variables for the Ceph role
+- [`infra/bronze/roles/ceph/tasks/main.yml`](infra/bronze/roles/ceph/tasks/main.yml) — Installs `cephadm` deps, bootstraps single-node cluster, enables CephFS, and mounts it at `/mnt/cephfs`
+
+**MinIO Role**
+- [`infra/bronze/roles/minio/defaults/main.yml`](infra/bronze/roles/minio/defaults/main.yml) — Default variables for the MinIO role
+- [`infra/bronze/roles/minio/tasks/main.yml`](infra/bronze/roles/minio/tasks/main.yml) — Creates `minio-user`, downloads binary, deploys systemd service, starts MinIO
+- [`infra/bronze/roles/minio/templates/minio.service.j2`](infra/bronze/roles/minio/templates/minio.service.j2) — Jinja2 systemd unit template for the MinIO service
+
+**Bronze Bucket Role**
+- [`infra/bronze/roles/bronze-bucket/tasks/main.yml`](infra/bronze/roles/bronze-bucket/tasks/main.yml) — Installs `mc` client, configures alias, creates the `bronze` bucket, enables versioning, and prints the ready message with S3 endpoint details
+
+Run the playbook with:
+```bash
+cd infra/bronze
+ansible-playbook -i inventory.yml site.yml --ask-become-pass
+```

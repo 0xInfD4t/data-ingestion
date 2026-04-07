@@ -1,0 +1,8 @@
+---
+# MinIO role defaults
+minio_version: "RELEASE.2025-03-20T20-16-30Z"
+minio_root_user: "admin"
+minio_root_password: "SuperSecretMinio2026!"
+minio_port: 9000
+minio_console_port: 9001
+minio_data_dir: "/var/lib/minio/data"

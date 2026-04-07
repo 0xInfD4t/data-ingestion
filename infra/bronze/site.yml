@@ -1,0 +1,10 @@
+---
+- name: Deploy Hudi-ready Bronze Zone (MinIO + Ceph)
+  hosts: all
+  become: true
+  roles:
+    - ceph
+    - minio
+    - bronze-bucket
+  vars:
+    minio_data_dir: "/var/lib/minio/data"
