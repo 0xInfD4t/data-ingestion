@@ -1,5 +1,46 @@
-/target/debug
-/target/release
-/target/wasm32-unknown-unknown
-/target/test-contracts
-/target
+# Rust build artifacts
+/target/
+
+# Python build artifacts
+*.egg-info/
+*.egg
+dist/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.dylib
+*.dll
+*.whl
+.venv/
+venv/
+env/
+
+# WASM / wasm-pack output
+crates/data-ingestion-wasm/pkg/
+
+# maturin build output
+target/maturin/
+
+# Test output contracts (generated files, not source)
+target/test-contracts/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.local
+
+# Logs
+*.log
+
+# Windows
+desktop.ini

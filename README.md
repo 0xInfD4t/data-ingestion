@@ -1,6 +1,6 @@
 # data-ingestion
 
-A high-performance **data contract generation engine** written in Rust. Ingest JSON datasets, JSON Schema, XML, XSD, CSV data dictionaries, and YAML schemas — and emit structured data contracts in JSON, YAML, XML, and CSV formats.
+A high-performance **data contract generation engine** written in Rust. Ingest JSON datasets, JSON Schema, XML, XSD, CSV data dictionaries, and YAML schemas and emit structured data contracts in JSON, YAML, XML, and CSV formats.
 
 Exposed as three build targets:
 
@@ -14,7 +14,7 @@ Exposed as three build targets:
 
 ---
 
-## Quick Start — `aytch` CLI
+## Quick Start -- `aytch` CLI
 
 ### Install
 
@@ -43,17 +43,17 @@ Options:
 ### Examples
 
 ```bash
-# Ingest a JSON Schema → all output formats
+# Ingest a JSON Schema -> all output formats
 aytch --ingest --src examples/sample_json_schema.json --output ./contracts
 
-# Ingest an XSD with owner/domain metadata → YAML only
+# Ingest an XSD with owner/domain metadata -> YAML only
 aytch --ingest --src examples/sample.xsd --output ./contracts --format yaml \
       --owner "hr-team" --domain "hr"
 
-# Ingest a CSV data dictionary → JSON contract
+# Ingest a CSV data dictionary -> JSON contract
 aytch --ingest --src examples/sample_data_dictionary.csv --output ./contracts --format json
 
-# Ingest an XML document → all formats, no PII detection
+# Ingest an XML document -> all formats, no PII detection
 aytch --ingest --src examples/sample.xml --output ./contracts --no-pii
 ```
 
@@ -67,16 +67,16 @@ Each run writes one file per format: `<stem>.contract.<ext>` into the output dir
 
 | Format | Description |
 |--------|-------------|
-| JSON Dataset | Array of JSON objects — schema inferred from data |
+| JSON Dataset | Array of JSON objects -- schema inferred from data |
 | JSON Schema | Draft 4 / 7 / 2019-09 / 2020-12 |
-| XML | XML document — structure inferred from elements and attributes |
+| XML | XML document -- structure inferred from elements and attributes |
 | XSD | XML Schema Definition |
 | CSV | Data dictionary (`field_name` / `type` columns) or raw tabular data |
 | YAML | Data dictionary list or JSON Schema-like structure |
 
 ### Output
 
-All outputs represent a **data contract** — a formal specification of a data source including field names, types, nullability, constraints, PII classification, and metadata.
+All outputs represent a **data contract** -- a formal specification of a data source including field names, types, nullability, constraints, PII classification, and metadata.
 
 | Format | Use Case |
 |--------|----------|
@@ -91,7 +91,7 @@ All outputs represent a **data contract** — a formal specification of a data s
 
 ### Prerequisites
 
-- Rust toolchain (`rustup`) — stable channel
+- Rust toolchain (`rustup`) -- stable channel
 - For Python wheel: [`maturin`](https://github.com/PyO3/maturin) (`pip install maturin`)
 - For WASM: [`wasm-pack`](https://rustwasm.github.io/wasm-pack/) (`cargo install wasm-pack`)
 
@@ -175,45 +175,45 @@ cargo run --example demo -p data-ingestion-core
 
 ```
 data-ingestion/
-├── Cargo.toml                        # Workspace manifest
-├── Cargo.lock                        # Locked dependency versions
-├── crates/
-│   ├── aytch/                        # CLI binary (primary entry point)
-│   │   └── src/main.rs
-│   ├── data-ingestion-core/          # Core library — ingestion, IR, output
-│   │   ├── src/
-│   │   │   ├── ingestion/            # Format readers (JSON, XML, XSD, CSV, YAML)
-│   │   │   ├── ir/                   # Intermediate representation + normalizer
-│   │   │   ├── contract/             # Contract builder, enricher, validator
-│   │   │   └── output/               # Serializers (JSON, YAML, XML, CSV)
-│   │   └── tests/
-│   ├── data-ingestion-python/        # PyO3 Python bindings
-│   │   ├── src/lib.rs
-│   │   ├── pyproject.toml
-│   │   └── data_ingestion.pyi        # Type stubs
-│   └── data-ingestion-wasm/          # wasm-bindgen WASM bindings
-│       └── src/lib.rs
-├── docs/                             # Architecture and API documentation
-│   ├── ARCHITECTURE.md
-│   ├── CRATES_AND_BUILD.md
-│   ├── DATA_MODELS.md
-│   ├── MODULES.md
-│   ├── API_AND_ERRORS.md
-│   ├── PYTHON_ABI.md
-│   └── WASM_STRATEGY.md
-├── examples/                         # Sample input files and demo scripts
-│   ├── sample_json_schema.json
-│   ├── sample_json_dataset.json
-│   ├── sample.xml / sample.xsd
-│   ├── sample_data_dictionary.csv
-│   ├── sample_schema.yaml
-│   ├── demo.py
-│   └── demo.js
-└── scripts/                          # Build scripts (PowerShell + Bash)
-    ├── build_all.{ps1,sh}
-    ├── build_aytch.{ps1,sh}
-    ├── build_python.{ps1,sh}
-    └── build_wasm.{ps1,sh}
+  Cargo.toml                        # Workspace manifest
+  Cargo.lock                        # Locked dependency versions
+  crates/
+    aytch/                          # CLI binary (primary entry point)
+      src/main.rs
+    data-ingestion-core/            # Core library -- ingestion, IR, output
+      src/
+        ingestion/                  # Format readers (JSON, XML, XSD, CSV, YAML)
+        ir/                         # Intermediate representation + normalizer
+        contract/                   # Contract builder, enricher, validator
+        output/                     # Serializers (JSON, YAML, XML, CSV)
+      tests/
+    data-ingestion-python/          # PyO3 Python bindings
+      src/lib.rs
+      pyproject.toml
+      data_ingestion.pyi            # Type stubs
+    data-ingestion-wasm/            # wasm-bindgen WASM bindings
+      src/lib.rs
+  docs/                             # Architecture and API documentation
+    ARCHITECTURE.md
+    CRATES_AND_BUILD.md
+    DATA_MODELS.md
+    MODULES.md
+    API_AND_ERRORS.md
+    PYTHON_ABI.md
+    WASM_STRATEGY.md
+  examples/                         # Sample input files and demo scripts
+    sample_json_schema.json
+    sample_json_dataset.json
+    sample.xml / sample.xsd
+    sample_data_dictionary.csv
+    sample_schema.yaml
+    demo.py
+    demo.js
+  scripts/                          # Build scripts (PowerShell + Bash)
+    build_all.{ps1,sh}
+    build_aytch.{ps1,sh}
+    build_python.{ps1,sh}
+    build_wasm.{ps1,sh}
 ```
 
 ---
@@ -234,4 +234,4 @@ data-ingestion/
 
 ## License
 
-MIT — see [`Cargo.toml`](Cargo.toml) for details.
+MIT -- see [`Cargo.toml`](Cargo.toml) for details.
